@@ -1,12 +1,14 @@
+$("#lets-go").on("click", function() {
+  $("#welcome-modal").modal("hide");
+  $("#initial-form").modal("show");
+});     
+     
       var map;
       var infowindow;
       var lat="";
       var lng="";
       function initMap() {
         var pyrmont = {lat: 35.9940, lng: -78.8986};
-
-
-
 
         map = new google.maps.Map(document.getElementById('map'), {
           center: pyrmont,
@@ -22,8 +24,7 @@
         }, callback);
       }
 
-      function callback(results, status) {
-                    
+      function callback(results, status) {                    
 
         if (status === google.maps.places.PlacesServiceStatus.OK) {
           for (var i = 0; i < results.length; i++) {
@@ -97,3 +98,6 @@ function movieDisplay (theaterLat, theaterLng)
 }
 
       }
+
+$("#welcome-modal").modal("show");
+// $("#initial-form").modal("show");
