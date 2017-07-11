@@ -1,5 +1,6 @@
 $("#welcome-modal").modal("show");
-$("#lets-go").on("click", function() {
+$("#lets-go").on("click", function(event) {
+
   $("#welcome-modal").modal("hide");
   $("#initial-form").modal("show");
      
@@ -139,10 +140,10 @@ function getlocation(zipCode, callback){
 //important 
 
 
-    $("#sumbitbtn").on("click", function() {
+    $("#sumbitbtn").on("click", function(event) {
      // Don't refresh the page!
-
-     event.preventDefault();
+     
+      event.preventDefault();
      $("#initial-form").modal("hide");
  
       var zipCode = $("#zipCodeInput").val().trim();
@@ -152,6 +153,8 @@ function getlocation(zipCode, callback){
        
 
        getlocation(zipCode,initMap);
+
+
 
 
       });
