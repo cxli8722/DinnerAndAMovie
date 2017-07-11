@@ -16,7 +16,7 @@ function movieDisplay (theaterLat, theaterLng){
   console.log("theaterlat:" +theaterLat);
    console.log("theaterlng:" +theaterLng);
    var currentdate = moment().format('YYYY-MM-DD');
-   var queryURL = "http://data.tmsapi.com/v1.1/movies/showings?startDate="+ currentdate+"&lat=" + theaterLat + "&lng=" + theaterLng + "&radius=1&units=km&imageSize=Sm&imageText=true&api_key=3vqwthgf9q8feq2mkdjnjs7j";
+   var queryURL = "https://data.tmsapi.com/v1.1/movies/showings?startDate="+ currentdate+"&lat=" + theaterLat + "&lng=" + theaterLng + "&radius=1&units=km&imageSize=Sm&imageText=true&api_key=3vqwthgf9q8feq2mkdjnjs7j";
 //2017-07-10
     $.ajax({
       url: queryURL,
