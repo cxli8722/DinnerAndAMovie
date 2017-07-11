@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
     <title>Place searches</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <meta charset="utf-8">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <link rel="stylesheet" href="assets/css/style.css">
+
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -20,10 +27,83 @@
     </style>
   </head>
   <body>
+<<<<<<< HEAD
   <p>hello</p>
-    <div id="map"></div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATTkl-HYGA1UhggRn2Fyf1MPlqyQiHv1E&libraries=places&callback=initMap" async defer></script>
+=======
+   <!-- Welcome Modal -->
+   <div id="welcome-modal" class="modal fade">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Dinner and a Movie</h5>
+            <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>-->
+          </div>
+          <div class="modal-body">
+            <p>Plan a perfect evening with Dinner and a Movie</p>
+            <p>Enter your zip code and choose a movie theater near you. See what's playing and choose a movie to watch.</p>
+            <p>Then search for a restaurant and enjoy your evening!</p>
+          </div>
+          <div class="modal-footer">
+            <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#initial-form">Let's go!</button>          </div>-->
+            <button id="lets-go" type="button" class="btn btn-primary">Let's go!</button>          </div>
+        </div>
+      </div>
+    </div>
 
-    <script src="assets/javascript/app.js"></script>
+    <!-- Initial Form -->
+    <div id="initial-form" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Search Location</h5>
+            <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>-->
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group" id="location-form">
+                <label for="recipient-name" class="form-control-label">Zip Code</label>
+                <input type="text" class="form-control" id="zipCodeInput">
+              </div>
+              <div class="form-group">
+                <label for="message-text" class="form-control-label">Radius</label>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    How far?
+                  </button>
+                  <div class="dropdown-menu">
+                    <p><a class="dropdown-item" href="#" value="1">1 mile</a></p>
+                    <p><a class="dropdown-item" href="#" value="2">2 miles</a></p>
+                    <p><a class="dropdown-item" href="#" value="3">5 miles</a></p>
+                    <!--<div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Separated link</a>-->
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="sumbitbtn" class="btn btn-secondary" data-dismiss="modal">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+    <div class="card-block" id="geometry"></div>
+
+    <!-- Map -->
+<!-->>>>>>> 2403e73387f8e6fc17b5bf7fd438782ddd781ec8-->
+    <div id="map"></div>
+
+  <script src="assets/javascript/app.js"></script>
+   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATTkl-HYGA1UhggRn2Fyf1MPlqyQiHv1E&libraries=places&callback=loadMap" async defer></script>
+
   </body>
 </html>
