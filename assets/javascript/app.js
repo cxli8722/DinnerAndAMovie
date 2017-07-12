@@ -1,3 +1,5 @@
+
+
 $("#welcome-modal").modal("show");
 $("#lets-go").on("click", function(event) {
 
@@ -17,7 +19,9 @@ function movieDisplay (theaterLat, theaterLng){
   console.log("theaterlat:" +theaterLat);
    console.log("theaterlng:" +theaterLng);
    var currentdate = moment().format('YYYY-MM-DD');
-   var queryURL = "http://data.tmsapi.com/v1.1/movies/showings?startDate="+ currentdate+"&lat=" + theaterLat + "&lng=" + theaterLng + "&radius=1&units=km&imageSize=Sm&imageText=true&api_key=g4prbmbz86e397zhvccrwagn";
+
+   var queryURL = "https://data.tmsapi.com/v1.1/movies/showings?startDate="+ currentdate+"&lat=" + theaterLat + "&lng=" + theaterLng + "&radius=1&units=km&imageSize=Sm&imageText=true&api_key=3vqwthgf9q8feq2mkdjnjs7j";
+
 //2017-07-10
     $.ajax({
       url: queryURL,
@@ -51,6 +55,45 @@ function movieDisplay (theaterLat, theaterLng){
 function loadMap(){
   initMap(35.9940,-78.8986);
 }
+
+// // get a list of places based on cuisine keywords
+// function getPlaces(type) {
+//   var queryUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670,151.1957&radius=500&types=restaurant&keyword=" + type + "key=AIzaSyAyJ9StHU9kwMRBGiBeCgdPaCbQtdAe9Wo";
+//   console.log("queryURL: " + queryUrl);
+//     $.ajax ({
+//         url: queryUrl,
+//         method: "GET",
+//         dataType: "json",
+//         cache: false,
+//         // success: function(response){      
+//         //     alert(response);                   
+//         // }
+//     }).done(function(result) {
+//         console.log(result);
+//         //var name = response.;
+//         // var rating;
+//         // var hours;
+//     });
+// }
+
+// create the locationUrl based on checked values
+// function locationParameter() {
+//     var foodTypes = document.forms[0];
+//     var locationUrl = "";
+//     for (var i = 0; i < foodTypes.length; i++) {
+//         if (foodTypes[i].checked) {
+//             locationUrl = locationUrl + foodTypes[i].value + "&";
+//         }
+//     }
+//    console.log("locationUrl: "+ locationUrl);
+//    getPlaces(locationUrl);
+// }
+
+// $("#food-submit").on("click", function(event) {
+//     event.preventDefault();
+//     locationParameter();
+// });
+
 // creating popup 
 function createMarker(place) {
   var placeLoc = place.geometry.location;
@@ -61,15 +104,13 @@ function createMarker(place) {
 
   google.maps.event.addListener(marker, 'click', function() {
     lat=JSON.stringify(marker.getPosition().lat());
-
-
     lng=JSON.stringify(marker.getPosition().lng());
 
     console.log(lat);
     console.log(lng);
               //magic happens here!!!
 
-
+    
     infowindow.setContent(place.name);
     infowindow.open(map, this);
 
@@ -78,8 +119,7 @@ function createMarker(place) {
   });
 }
 
-function placeMarkers(results, status) {                    
-
+function placeMarkers(results, status) {            
   if (status === google.maps.places.PlacesServiceStatus.OK) {
     for (var i = 0; i < results.length; i++) {
       createMarker(results[i]);
@@ -91,7 +131,7 @@ function placeMarkers(results, status) {
 function initMap(lat, lng, keyword){// use lat and lng 
   var pyrmont = {lat: lat, lng: lng};
   console.log("lat1: " + lat);
- console.log("lng2: " + lng);
+  console.log("lng2: " + lng);
   map = new google.maps.Map(document.getElementById('map'), {
     center: pyrmont,
     zoom: 10
@@ -109,6 +149,7 @@ function initMap(lat, lng, keyword){// use lat and lng
 
 
 function getlocation(address, keyword){
+
 
    axios.get('https://maps.googleapis.com/maps/api/geocode/json',{
         params:{
@@ -136,10 +177,10 @@ function getlocation(address, keyword){
       console.log(error);
       });
     }
-  
- 
 
 //important 
+
+
 
 
     $("#sumbitbtn").on("click", function(event) {
@@ -161,6 +202,8 @@ function getlocation(address, keyword){
 
       });
 
+    /*
+
    $("#food-sumbit").on("click", function(event) {
      // Don't refresh the page!
      
@@ -179,7 +222,7 @@ function getlocation(address, keyword){
 
 
       });
-
+*/
    
 
   //still working on it 
@@ -218,6 +261,7 @@ fruits.push("Kiwi");
 
 
      */
+
 
 
 // $("#initial-form").modal("show");
