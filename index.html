@@ -101,7 +101,16 @@
     <div id="map" class="container"></div>
 
     <!-- Restaurant Options Form -->
-          <div id="floating-panel">
+    <div id="food-form" class="modal fade">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Choose Type of Food</h5>
+            <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>-->
+          </div>
+          <div class="modal-body">
             <div id="form">
             <form>
             <div class="row">
@@ -143,12 +152,14 @@
                 </div>
             </div>
             <div>
-                <button id="submit" type="submit">Submit</button>
+                <button id="food-submit" type="submit">Submit</button>
             </div>
             </form>
             </div>
           </div>
-
+        </div>
+      </div>
+    </div>  
   <script src="assets/javascript/app.js"></script>
    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATTkl-HYGA1UhggRn2Fyf1MPlqyQiHv1E&libraries=places&callback=loadMap" async defer></script>
 
