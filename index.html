@@ -27,9 +27,10 @@
     </style>
   </head>
   <body>
-<<<<<<< HEAD
-  <p>hello</p>
-=======
+  <div class="container">
+    <div><h1>Dinner and a Movie</h1></div>
+  </div>    
+
    <!-- Welcome Modal -->
    <div id="welcome-modal" class="modal fade">
       <div class="modal-dialog" role="document">
@@ -97,10 +98,56 @@
 
 
     <div class="card-block" id="geometry"></div>
+    <div id="map" class="container"></div>
 
-    <!-- Map -->
-<!-->>>>>>> 2403e73387f8e6fc17b5bf7fd438782ddd781ec8-->
-    <div id="map"></div>
+    <!-- Restaurant Options Form -->
+          <div id="floating-panel">
+            <div id="form">
+            <form>
+            <div class="row">
+                <div class="col-sm-6 checkboxOption">
+                    <p><input type="checkbox" id="american" name="american" value="american"><label for="american">American</label></p>
+                    <!--<p><input type="checkbox" id="asian" name="asian" value="asian"><label for="asian">Asian</label></p>
+                    <p><input type="checkbox" id="coffee" name="coffee" value="coffee"><label for="coffee">Coffee</label></p>
+                    <p><input type="checkbox" id="indian" name="indian" value="indian"><label for="indian">Indian</label></p>-->
+                </div>
+                <div class="col-sm-6 checkboxOption">
+                    <p><input type="checkbox" id="italian" name="italian" value="italian"><label for="italian">Italian</label></p>
+                    <!--<p><input type="checkbox" id="mexican" name="mexican" value="mexican"><label for="mexican">Mexican</label></p>
+                    <p><input type="checkbox" id="pizza" name="pizza" value="pizza"><label for="pizza">Pizza</label></p>
+                    <p><input type="checkbox" id="steak" name="steak" value="steak"><label for="steak">Steak</label></p>-->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 checkboxOption">
+                    <p><input type="checkbox" id="asian" name="asian" value="asian"><label for="asian">Asian</label></p>
+                </div>
+                <div class="col-sm-6 checkboxOption">
+                    <p><input type="checkbox" id="mexican" name="mexican" value="mexican"><label for="mexican">Mexican</label></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 checkboxOption">
+                    <p><input type="checkbox" id="coffee" name="coffee" value="coffee"><label for="coffee">Coffee</label></p>
+                </div>
+                <div class="col-sm-6 checkboxOption">
+                    <p><input type="checkbox" id="pizza" name="pizza" value="pizza"><label for="pizza">Pizza</label></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 checkboxOption">
+                    <p><input type="checkbox" id="indian" name="indian" value="indian"><label for="indian">Indian</label></p>
+                </div>
+                <div class="col-sm-6 checkboxOption">
+                    <p><input type="checkbox" id="steak" name="steak" value="steak"><label for="steak">Steak</label></p>
+                </div>
+            </div>
+            <div>
+                <button id="submit" type="submit">Submit</button>
+            </div>
+            </form>
+            </div>
+          </div>
 
   <script src="assets/javascript/app.js"></script>
    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATTkl-HYGA1UhggRn2Fyf1MPlqyQiHv1E&libraries=places&callback=loadMap" async defer></script>

@@ -1,3 +1,5 @@
+document.getElementById("floating-panel").style.visibility = "hidden";
+
 $("#welcome-modal").modal("show");
 $("#lets-go").on("click", function() {
   $("#welcome-modal").modal("hide");
@@ -48,6 +50,45 @@ function movieDisplay (theaterLat, theaterLng){
 function loadMap(){
   initMap(35.9940,-78.8986);
 }
+
+// get a list of places based on cuisine keywords
+function getPlaces(type) {
+  var queryUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670,151.1957&radius=500&types=restaurant&keyword=" + type + "key=AIzaSyAyJ9StHU9kwMRBGiBeCgdPaCbQtdAe9Wo";
+  console.log("queryURL: " + queryUrl);
+    $.ajax ({
+        url: queryUrl,
+        method: "GET",
+        dataType: "json",
+        cache: false,
+        // success: function(response){      
+        //     alert(response);                   
+        // }
+    }).done(function(result) {
+        console.log(result);
+        //var name = response.;
+        var rating;
+        var hours;
+    });
+}
+
+// create the locationUrl based on checked values
+function locationParameter() {
+    var foodTypes = document.forms[0];
+    var locationUrl = "";
+    for (var i = 0; i < foodTypes.length; i++) {
+        if (foodTypes[i].checked) {
+            locationUrl = locationUrl + foodTypes[i].value + "&";
+        }
+    }
+   console.log("locationUrl: "+ locationUrl);
+   getPlaces(locationUrl);
+}
+
+$("#submit").on("click", function(event) {
+    event.preventDefault();
+    locationParameter();
+});
+
 // creating popup 
 function createMarker(place) {
   var placeLoc = place.geometry.location;
@@ -58,8 +99,6 @@ function createMarker(place) {
 
   google.maps.event.addListener(marker, 'click', function() {
     lat=JSON.stringify(marker.getPosition().lat());
-
-
     lng=JSON.stringify(marker.getPosition().lng());
 
     console.log(lat);
