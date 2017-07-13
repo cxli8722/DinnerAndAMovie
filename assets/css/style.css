@@ -1,5 +1,11 @@
 body {
     font-family: Georgia, Times, "Times New Roman", serif;
+    background-color: black;
+    background-image: url("../images/dark-triangles/dark-triangles.png");
+}
+
+h1 {
+    color: #fff;
 }
 
 .dropdown-item {
@@ -13,4 +19,42 @@ body {
 
 .modal-body {
     font-size: 16px;
+}
+
+#map {
+    border: 2px solid gray;
+}
+
+#floating-panel {
+    position: absolute;
+    top: 10px;
+    left: 25%;
+    z-index: 5;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #999;
+    text-align: center;
+    font-family: 'Roboto','sans-serif';
+    line-height: 30px;
+    padding-left: 10px;
+}
+label {
+    float: left;
+    display: inline-block;
+    font-size: 20px;
+    padding-left: 10px;
+    font-family: 'Raleway', sans-serif;
+}
+button {
+    font-family: 'Raleway', sans-serif;  
+}
+input {
+    float: left;
+}
+    .checkboxOption {
+    width: 200px;
+}
+form {
+    display: block;
+    text-align: center;
 }
