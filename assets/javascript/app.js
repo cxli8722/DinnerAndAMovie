@@ -138,7 +138,6 @@ $("#sumbitbtn").on("click", function(event) {
   keyword = "movie_theater";
   console.log("keyword set: " + keyword);
   getlocation(zipCode, keyword);
-  // $("#food-form").modal("show");
 });
 
 // Click event for food form submit
@@ -168,4 +167,10 @@ $(".dropdown-item").on("click", function() {
   var buttonText = $(this).text();
   console.log("Radius: " + radiusMiles + " miles, " + radiusValue + " meters");
   $("#radius").text(buttonText);
+});
+
+// Click event for theater submit
+$("#theaterSubmit").on("click", function(event) {
+  event.preventDefault();
+  $("#food-form").modal("show");
 });
