@@ -10,8 +10,8 @@ $("#lets-go").on("click", function(event) {
 
 var map;
 var infowindow;
-//var lat="";
-//var lng="";
+var lat=0;
+var lng=0;
 var keyword= "park";
 
 
@@ -129,8 +129,8 @@ function getlocation(address, keyword){
         var addressComponents = response.data.results[0].address_components;
         var addressComponentsOutput = '<ul class="list-group">';
        
-        var lat = response.data.results[0].geometry.location.lat;
-        var lng = response.data.results[0].geometry.location.lng;
+        lat = response.data.results[0].geometry.location.lat;
+        lng = response.data.results[0].geometry.location.lng;
 
         console.log("latt: " + lat)
 
@@ -193,7 +193,8 @@ var inputElements = document.getElementsByClassName('messageCheckbox');
         checkedValue = inputElements[i].value;
         console.log(checkedValue );
         var address="8030 Renaissance Pkwy, Durham, NC 27713";
-        getlocation(address, checkedValue);
+        //getlocation(address, checkedValue);
+        initMap(lat, lng, checkedValue);
       }
 }
 
