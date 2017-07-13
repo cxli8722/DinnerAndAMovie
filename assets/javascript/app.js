@@ -13,8 +13,8 @@ var infowindow;
 
 //ajax for movie data for specific chosen location 
 function movieDisplay (theaterLat, theaterLng){
-  console.log("theaterlat:" +theaterLat);
-   console.log("theaterlng:" +theaterLng);
+  //console.log("theaterlat:" +theaterLat);
+   //console.log("theaterlng:" +theaterLng);
    var currentdate = moment().format('YYYY-MM-DD');
    var queryURL = "http://data.tmsapi.com/v1.1/movies/showings?startDate="+ currentdate+"&lat=" + theaterLat + "&lng=" + theaterLng + "&radius=1&units=km&imageSize=Sm&imageText=true&api_key=3vqwthgf9q8feq2mkdjnjs7j";
 //2017-07-10
@@ -23,7 +23,61 @@ function movieDisplay (theaterLat, theaterLng){
       method: "GET"
     }).done(function(response) {
         console.log(response);
-       // console.log(response[0].showtimes[0].theatre);
+        var movies = []
+
+        for (i = 0; i < response.length; i++) {
+            if (response[i].ratings) {
+          movies.push({
+                        title: response[i].title,
+                        rating: response[i].ratings[0].code,
+                        showtimes: response[i].showtimes.map(function(v){
+                          return moment(v.dateTime).format('LT');
+                        })
+                      });
+        }
+        }
+
+      movies.forEach(function(movie){
+        console.log(movie.title);
+        console.log("Rated " +movie.rating);
+        console.log("Showing at: "+movie.showtimes);
+          var displayTitle = $("<div>");
+              $("displayTitle").attr(movie.title);
+              $("body").append(displayTitle);
+              
+        });
+
+      
+
+      //var movietheater=response[i].showtimes[j];
+        //console.log("Movie title: "+ response[i].title);
+        //console.log("Show time:" +moment(movietheater.dateTime).format('LT'));
+
+        //var theaterName = response[0].showtimes[0].theatre.name;
+          //console.log("Theater: " +theaterName);
+
+        //for (i = 0; i < response.length; i++) {
+          //var movieTitle = response[i].title;
+            //console.log("Movie: " +movieTitle);
+
+
+        //var showtimes = response[i].showtimes;
+
+        //for (x = 0; x < showtimes.length; x++){
+        //console.log(response[x].showtimes[x].dateTime);
+          
+        //var movieTitle = response[i].title;
+
+       // for (i = 0; i < response.length; i++) {
+        //  console.log(response[i].showtimes[i]);
+        //}
+
+      //}  
+        //for (i = 0; i < response.length; i++) {
+          //console.log(response[i].showtimes[i]);
+        //}
+      });
+
 
 
    /* for (i = 0; i < response.length; i++) { 
@@ -42,9 +96,9 @@ function movieDisplay (theaterLat, theaterLng){
       };
     };
 */
-});
-
 }
+
+
 function loadMap(){
   initMap(35.9940,-78.8986);
 }
