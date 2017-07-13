@@ -131,7 +131,7 @@ function getlocation(address, keyword){
       })
       .then(function(response){
         // Log full response
-        //console.log(response);
+        console.log(response);
 
         var addressComponents = response.data.results[0].address_components;
         var addressComponentsOutput = '<ul class="list-group">';
