@@ -41,61 +41,8 @@ function movieDisplay (theaterLat, theaterLng){
         console.log(movie.title);
         console.log("Rated " +movie.rating);
         console.log("Showing at: "+movie.showtimes);
-          var displayTitle = $("<div>");
-              $("displayTitle").attr(movie.title);
-              $("body").append(displayTitle);
-              
-        });
-
-      
-
-      //var movietheater=response[i].showtimes[j];
-        //console.log("Movie title: "+ response[i].title);
-        //console.log("Show time:" +moment(movietheater.dateTime).format('LT'));
-
-        //var theaterName = response[0].showtimes[0].theatre.name;
-          //console.log("Theater: " +theaterName);
-
-        //for (i = 0; i < response.length; i++) {
-          //var movieTitle = response[i].title;
-            //console.log("Movie: " +movieTitle);
-
-
-        //var showtimes = response[i].showtimes;
-
-        //for (x = 0; x < showtimes.length; x++){
-        //console.log(response[x].showtimes[x].dateTime);
-          
-        //var movieTitle = response[i].title;
-
-       // for (i = 0; i < response.length; i++) {
-        //  console.log(response[i].showtimes[i]);
-        //}
-
-      //}  
-        //for (i = 0; i < response.length; i++) {
-          //console.log(response[i].showtimes[i]);
-        //}
+       });
       });
-
-
-
-   /* for (i = 0; i < response.length; i++) { 
-      //console.log(response[i]) loop all the object 
-      for (j = 0; j < response[i].showtimes.length; j++) { 
-          //console.log(response[i].showtimes[j])  
-      var movietheater=response[i].showtimes[j];
-      //console.log(movietheater.theatre)
-        for ( var key in movietheater.theatre){
-           //console.log(movietheater.theatre[key]) // return theater name 
-
-          
-
-
-        };
-      };
-    };
-*/
 }
 
 
