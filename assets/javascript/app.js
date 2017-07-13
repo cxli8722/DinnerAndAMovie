@@ -52,11 +52,11 @@ function movieDisplay (theaterLat, theaterLng){
 }
 
 
-        };
-      };
-    //};
+        
+      
+    
 
-});
+
 
 
 function loadMap(){
