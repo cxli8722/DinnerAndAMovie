@@ -1,15 +1,24 @@
 body {
-    font-family: Georgia, Times, "Times New Roman", serif;
+    /*font-family: Georgia, Times, "Times New Roman", serif;*/
+    font-family: 'Raleway', sans-serif;
     background-color: black;
     background-image: url("../images/dark-triangles/dark-triangles.png");
 }
 
-h1 {
+.heading {
     color: #fff;
+    display: inline;
 }
 
+#headingDiv {
+    padding: 20px 0px;
+}
 .dropdown-item {
     padding-left: 5px; 
+}
+
+.modal-content {
+    font-family: 'Raleway', sans-serif;
 }
 
 .modal-title {
@@ -23,20 +32,7 @@ h1 {
 
 #map {
     border: 2px solid gray;
-}
-
-#floating-panel {
-    position: absolute;
-    top: 10px;
-    left: 25%;
-    z-index: 5;
-    background-color: #fff;
-    padding: 5px;
-    border: 1px solid #999;
-    text-align: center;
-    font-family: 'Roboto','sans-serif';
-    line-height: 30px;
-    padding-left: 10px;
+    height: 400px;
 }
 label {
     float: left;
@@ -45,16 +41,31 @@ label {
     padding-left: 10px;
     font-family: 'Raleway', sans-serif;
 }
-button {
-    font-family: 'Raleway', sans-serif;  
-}
 input {
     float: left;
+    margin-bottom: 20px;
 }
-    .checkboxOption {
+.btn-group {
+    margin-left: 10px;
+}
+.checkboxOption {
     width: 200px;
 }
 form {
     display: block;
+}
+.row {
     text-align: center;
+}
+
+#moviesDiv {
+    height: 200px; 
+    overflow-y: scroll;
+
+}
+
+#movies {
+    background-color: linen;
+    border: 2px solid gray;
+    height: 100%;
 }
