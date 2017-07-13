@@ -12,6 +12,7 @@ var map;
 var infowindow;
 //var lat="";
 //var lng="";
+var keyword= "park";
 
 
 //ajax for movie data for specific chosen location 
@@ -60,46 +61,9 @@ function movieDisplay (theaterLat, theaterLng){
 
 
 function loadMap(){
-  initMap(35.9940,-78.8986);
+  initMap(35.9940,-78.8986,keyword);
 }
 
-// // get a list of places based on cuisine keywords
-// function getPlaces(type) {
-//   var queryUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670,151.1957&radius=500&types=restaurant&keyword=" + type + "key=AIzaSyAyJ9StHU9kwMRBGiBeCgdPaCbQtdAe9Wo";
-//   console.log("queryURL: " + queryUrl);
-//     $.ajax ({
-//         url: queryUrl,
-//         method: "GET",
-//         dataType: "json",
-//         cache: false,
-//         // success: function(response){      
-//         //     alert(response);                   
-//         // }
-//     }).done(function(result) {
-//         console.log(result);
-//         //var name = response.;
-//         // var rating;
-//         // var hours;
-//     });
-// }
-
-// create the locationUrl based on checked values
-// function locationParameter() {
-//     var foodTypes = document.forms[0];
-//     var locationUrl = "";
-//     for (var i = 0; i < foodTypes.length; i++) {
-//         if (foodTypes[i].checked) {
-//             locationUrl = locationUrl + foodTypes[i].value + "&";
-//         }
-//     }
-//    console.log("locationUrl: "+ locationUrl);
-//    getPlaces(locationUrl);
-// }
-
-// $("#food-submit").on("click", function(event) {
-//     event.preventDefault();
-//     locationParameter();
-// });
 
 // creating popup 
 function createMarker(place) {
@@ -113,7 +77,7 @@ function createMarker(place) {
     lat=JSON.stringify(marker.getPosition().lat());
     lng=JSON.stringify(marker.getPosition().lng());
 
-    console.log(lat);
+    console.log("theaterSelected:" + lat);
     console.log(lng);
               //magic happens here!!!
 
@@ -139,6 +103,7 @@ function initMap(lat, lng, keyword){// use lat and lng
   var pyrmont = {lat: lat, lng: lng};
   console.log("lat1: " + lat);
   console.log("lng2: " + lng);
+  console.log("keyword initmap function:" + keyword);  
   map = new google.maps.Map(document.getElementById('map'), {
     center: pyrmont,
     zoom: 10
@@ -166,7 +131,7 @@ function getlocation(address, keyword){
       })
       .then(function(response){
         // Log full response
-        console.log(response);
+        //console.log(response);
 
         var addressComponents = response.data.results[0].address_components;
         var addressComponentsOutput = '<ul class="list-group">';
@@ -201,75 +166,48 @@ function getlocation(address, keyword){
       console.log("zipcode:" + zipCode);
       // call the fucntion getlocation()
        
+      keyword = "movie_theater";
+      console.log("keyword set: " + keyword);
+       getlocation(zipCode, keyword);
 
-       getlocation(zipCode, "movie_theater");
 
-
-
+      $("#food-form").modal("show");
 
       });
 
-    /*
+    
 
    $("#food-sumbit").on("click", function(event) {
      // Don't refresh the page!
+     $("#food-form").modal("hide");
      
       event.preventDefault();
      //$("#food-form").modal("hide");
- 
-      var foodtype = $('input[type=checkbox]').val().trim();
+      foodInput();
+      //var foodtype = $('input[type=checkbox]:checked').val().trim();
       //var zipCode = document.getElementById('zipCodeInput').value;
-      console.log("foodtype:" + foodtype);
-      // call the fucntion getlocation()
-       
 
-       getlocation(address, foodtype);
+     
+   });
 
-
-
-
-      });
-*/
    
+   function foodInput  (){
 
-  //still working on it 
-  
-     /*
-  function initMap(lat, lng, keyword){// use lat and lng 
-  var pyrmont = {lat: lat, lng: lng};
-  console.log("lat1: " + lat);
- console.log("lng2: " + lng);
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: pyrmont,
-    zoom: 10
-  });
-
-  infowindow = new google.maps.InfoWindow();
-  var service = new google.maps.places.PlacesService(map);
-  service.nearbySearch({
-    location: pyrmont,
-    radius: 50000,
-
-   //keyword: ['movie_theater']
-
-    if (chosenfood === pizza){
-        keyword: [ ]
-        else if ()
-        else 
-
-    }
-
-
-  }, placeMarkers);
+    var checkedValue = null; 
+var inputElements = document.getElementsByClassName('messageCheckbox');
+    for(var i=0; inputElements[i]; ++i){
+      if(inputElements[i].checked){
+        checkedValue = inputElements[i].value;
+        console.log(checkedValue );
+        var address="8030 Renaissance Pkwy, Durham, NC 27713";
+        getlocation(address, checkedValue);
+      }
 }
 
-var fruits = ["Banana", "Orange", "Apple", "Mango"];
-fruits.push("Kiwi");
+    
+   }
 
-
-     */
-
-
+  
 
 // $("#initial-form").modal("show");
 
