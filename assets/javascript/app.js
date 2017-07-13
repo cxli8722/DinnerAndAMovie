@@ -16,8 +16,8 @@ var infowindow;
 
 //ajax for movie data for specific chosen location 
 function movieDisplay (theaterLat, theaterLng){
-  console.log("theaterlat:" +theaterLat);
-   console.log("theaterlng:" +theaterLng);
+  //console.log("theaterlat:" +theaterLat);
+   //console.log("theaterlng:" +theaterLng);
    var currentdate = moment().format('YYYY-MM-DD');
 
    var queryURL = "https://data.tmsapi.com/v1.1/movies/showings?startDate="+ currentdate+"&lat=" + theaterLat + "&lng=" + theaterLng + "&radius=1&units=km&imageSize=Sm&imageText=true&api_key=3vqwthgf9q8feq2mkdjnjs7j";
@@ -28,21 +28,28 @@ function movieDisplay (theaterLat, theaterLng){
       method: "GET"
     }).done(function(response) {
         console.log(response);
-       // console.log(response[0].showtimes[0].theatre);
+        var movies = []
+
+        for (i = 0; i < response.length; i++) {
+            if (response[i].ratings) {
+          movies.push({
+                        title: response[i].title,
+                        rating: response[i].ratings[0].code,
+                        showtimes: response[i].showtimes.map(function(v){
+                          return moment(v.dateTime).format('LT');
+                        })
+                      });
+        }
+        }
 
 
-   for (i = 0; i < response.length; i++) { 
-      //console.log(response[i]) loop all the object 
-      for (j = 0; j < response[i].showtimes.length; j++) { 
-          //console.log(response[i].showtimes[j])  
-
-      var movietheater=response[i].showtimes[j];
-        console.log("showtime:" +movietheater.dateTime+ "movieTitle: "+ response[i].title)
-        
-        //for ( var key in movietheater.theatre){
-           //console.log(movietheater.theatre[key]) // return theater name 
-
-          
+      movies.forEach(function(movie){
+        console.log(movie.title);
+        console.log("Rated " +movie.rating);
+        console.log("Showing at: "+movie.showtimes);
+       });
+      });
+}
 
 
         };
@@ -51,7 +58,7 @@ function movieDisplay (theaterLat, theaterLng){
 
 });
 
-}
+
 function loadMap(){
   initMap(35.9940,-78.8986);
 }
