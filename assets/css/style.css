@@ -69,3 +69,8 @@ form {
     border: 2px solid gray;
     height: 100%;
 }
+
+#theaterSubmit {
+    margin-top: 10px;
+    width: 100%;
+}
