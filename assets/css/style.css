@@ -30,6 +30,14 @@ body {
     font-size: 16px;
 }
 
+.movieDiv {
+    text-align: left;
+    border: 2px solid gray;
+    margin: 10px 5px;
+    padding: 5px 5px;
+    background-color: whitesmoke;
+}
+
 #map {
     border: 2px solid gray;
     height: 400px;
@@ -65,12 +73,16 @@ form {
 }
 
 #movies {
-    background-color: linen;
-    border: 2px solid gray;
+    background-color: slategrey;
+    border: 2px solid white;
     height: 100%;
+    overflow-y: scroll;
 }
 
 #theaterSubmit {
     margin-top: 10px;
     width: 100%;
+    background-color: lavender;
+    color: black;
+    font-size: 24px;
 }

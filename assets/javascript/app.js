@@ -38,8 +38,14 @@ function movieDisplay (theaterLat, theaterLng){
       }
       movies.forEach(function(movie){
         console.log(movie.title);
-        console.log("Rated " +movie.rating);
-        console.log("Showing at: "+movie.showtimes);
+        console.log("Rated " + movie.rating);
+        console.log("Showing at: " + movie.showtimes);
+        var newDiv = $("<div class='movieDiv'>");
+        newDiv.append($("<p><bold>Title:</bold> " + movie.title + "</p>"));
+        newDiv.append($("<p><bold>Rating:</bold> " + movie.rating + "</p>"));
+        newDiv.append($("<p><bold>Showing at:</bold> " + movie.showtimes + "</p>"));
+        console.log("newDiv: " + newDiv);
+        $("#movieListings").append(newDiv);
       });
   });
 }
@@ -57,6 +63,7 @@ function createMarker(place) {
   });
 
   google.maps.event.addListener(marker, 'click', function() {
+    $("#movieListings").empty();
     lat=JSON.stringify(marker.getPosition().lat());
     lng=JSON.stringify(marker.getPosition().lng());
 
