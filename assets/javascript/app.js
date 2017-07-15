@@ -7,10 +7,11 @@ $("#lets-go").on("click", function(event) {
 
 var map;
 var infowindow;
-var lat = 0;
-var lng = 0;
+var markerlat = 0;
+var markerlng = 0;
 var keyword = "park";
 var radiusValue = 50000;
+var checkedValue="";
 
 //ajax for movie data for specific chosen location 
 function movieDisplay (theaterLat, theaterLng){
@@ -64,16 +65,16 @@ function createMarker(place) {
 
   google.maps.event.addListener(marker, 'click', function() {
     $("#movieListings").empty();
-    lat=JSON.stringify(marker.getPosition().lat());
-    lng=JSON.stringify(marker.getPosition().lng());
+    markerlat=JSON.stringify(marker.getPosition().lat());
+    markerlng=JSON.stringify(marker.getPosition().lng());
 
-    console.log("theaterSelected:" + lat);
-    console.log(lng);
+    console.log("theaterSelected:" + markerlat);
+    console.log(markerlng);
               //magic happens here!!!
     infowindow.setContent(place.name);
     infowindow.open(map, this);
 
-    movieDisplay(lat, lng);
+    movieDisplay(markerlat, markerlng);
 
   });
 }
@@ -82,8 +83,13 @@ function createMarker(place) {
 function placeMarkers(results, status) {            
   if (status === google.maps.places.PlacesServiceStatus.OK) {
     for (var i = 0; i < results.length; i++) {
+
+
+
+
       createMarker(results[i]);
-      console.log(results[i]);
+
+      console.log("restaurant:" +results[i].name+""+ results[i].rating+ ""+ results[i].opening_hours);
     }
   }
 }
@@ -123,13 +129,14 @@ function getlocation(address, keyword){
     var addressComponents = response.data.results[0].address_components;
     var addressComponentsOutput = '<ul class="list-group">';
     
-    lat = response.data.results[0].geometry.location.lat;
-    lng = response.data.results[0].geometry.location.lng;
+    var lat = response.data.results[0].geometry.location.lat;
+    var lng = response.data.results[0].geometry.location.lng;
 
     console.log("latt: " + lat)
 
     console.log("lngg: " + lng)
     initMap(lat, lng, keyword);
+
     
   }).catch(function(error){
     console.log(error);
@@ -152,6 +159,7 @@ $("#food-sumbit").on("click", function(event) {
   event.preventDefault();
   $("#food-form").modal("hide");
   foodInput();
+
 });
 
 // Get values of checked food choices and put markers on the map   
@@ -161,8 +169,8 @@ function foodInput() {
   for(var i=0; inputElements[i]; ++i){
     if(inputElements[i].checked){
       checkedValue = inputElements[i].value;
-      console.log(checkedValue );
-      initMap(lat, lng, checkedValue);
+      console.log("checkvalue: " +checkedValue + " markerlat: " + markerlat  + " markerlng: "+ markerlng );
+      initMap(markerlat, markerlng, checkedValue);
     }
   }
 }
