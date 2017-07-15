@@ -6,6 +6,7 @@ $("#lets-go").on("click", function(event) {
 });   
 
 $("#foodListings").hide();
+$("#theaterSubmit").hide();
 var map;
 var infowindow;
 var lat = 0;
@@ -85,6 +86,8 @@ function createMarker(place) {
     infowindow.setContent(place.name);
     infowindow.open(map, this);
     movieDisplay(lat, lng);
+    $("#theaterSubmit").show();
+
 
 
   });
