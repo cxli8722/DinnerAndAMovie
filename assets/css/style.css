@@ -86,3 +86,20 @@ form {
     color: black;
     font-size: 24px;
 }
+
+#movieListings {
+
+    margin-left: 0;
+    background-color: #b3b2b2;
+    padding: 10px;
+    width: 235px;
+    font-size: 15px;
+}
+#foodListings {
+
+    margin-left: 0;
+    background-color: #b3b2b2;
+    padding: 10px;
+    width: 235px;
+    font-size: 15px;
+}
