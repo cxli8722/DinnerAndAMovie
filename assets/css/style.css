@@ -37,13 +37,7 @@ body {
     padding: 5px 5px;
     background-color: whitesmoke;
 }
-.foodDiv {
-    text-align: left;
-    border: 2px solid gray;
-    margin: 10px 5px;
-    padding: 5px 5px;
-    background-color: whitesmoke;
-}
+
 #map {
     border: 2px solid gray;
     height: 400px;
@@ -75,9 +69,8 @@ form {
 #moviesDiv {
     height: 200px; 
     overflow-y: scroll;
+
 }
-
-
 
 #movies {
     background-color: slategrey;
@@ -92,21 +85,4 @@ form {
     background-color: lavender;
     color: black;
     font-size: 24px;
-}
-
-#movieListings {
-
-    margin-left: 0;
-    background-color: #b3b2b2;
-    padding: 10px;
-    width: 235px;
-    font-size: 15px;
-}
-#foodListings {
-
-    margin-left: 0;
-    background-color: #b3b2b2;
-    padding: 10px;
-    width: 235px;
-    font-size: 15px;
 }
