@@ -35,7 +35,7 @@ function movieDisplay(theaterLat, theaterLng) {
       console.log("response: " + response);
       var movies = [];
       for (i = 0; i < response.length; i++) {
-              console.log("response: " + response);
+              console.log("response: " + response[i]);
         if (response[i].ratings) {
           movies.push({
             title: response[i].title,
@@ -97,7 +97,7 @@ function placeMarkers(results, status) {
     for (var i = 0; i < results.length; i++) {
       createMarker(results[i]);
       console.log(results[i]);
-      if (results[i].types) {
+      if (results[i].price_level) {
         foods.push({
             title: results[i].name,
             rating: results[i].rating,
@@ -112,7 +112,7 @@ function placeMarkers(results, status) {
         var newDivfood = $("<div class='foodDiv'>");
         newDivfood.append($("<p><bold>Title:</bold> " + food.title + "</p>"));
         newDivfood.append($("<p><bold>Rated:</bold> " + food.rating + "</p>"));
-        newDivfood.append($("<p><food adress:</bold> " + food.address + "</p>"));
+        newDivfood.append($("<p><bold>Address:</bold> " + food.address + "</p>"));
         console.log("newDiv: " + newDivfood);
         $("#foodListings").append(newDivfood);
 

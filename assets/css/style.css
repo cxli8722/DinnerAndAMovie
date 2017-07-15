@@ -37,7 +37,13 @@ body {
     padding: 5px 5px;
     background-color: whitesmoke;
 }
-
+.foodDiv {
+    text-align: left;
+    border: 2px solid gray;
+    margin: 10px 5px;
+    padding: 5px 5px;
+    background-color: whitesmoke;
+}
 #map {
     border: 2px solid gray;
     height: 400px;
@@ -69,8 +75,9 @@ form {
 #moviesDiv {
     height: 200px; 
     overflow-y: scroll;
-
 }
+
+
 
 #movies {
     background-color: slategrey;
