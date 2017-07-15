@@ -5,6 +5,8 @@ $("#lets-go").on("click", function(event) {
   $("#initial-form").modal("show");
 });   
 
+$("#foodListings").hide();
+$("#theaterSubmit").hide();
 var map;
 var infowindow;
 var lat = 0;
@@ -12,20 +14,29 @@ var lng = 0;
 var keyword = "park";
 var radiusValue = 50000;
 
+
+var newLat;
+var newLng;
+
 //ajax for movie data for specific chosen location 
-function movieDisplay (theaterLat, theaterLng){
+function movieDisplay(theaterLat, theaterLng) {
+
+    newLat = lat;
+    newLng = lng;
+
   //console.log("theaterlat:" +theaterLat);
    //console.log("theaterlng:" +theaterLng);
   $("#movie").animate({width:'toggle'},350);
   var currentdate = moment().format('YYYY-MM-DD');
-  var queryURL = "https://data.tmsapi.com/v1.1/movies/showings?startDate="+ currentdate+"&lat=" + theaterLat + "&lng=" + theaterLng + "&radius=1&units=km&imageSize=Sm&imageText=true&api_key=6wyda8gpyrx5hr3uqbb33yxh";
+  var queryURL = "https://data.tmsapi.com/v1.1/movies/showings?startDate="+ currentdate+"&lat=" + theaterLat + "&lng=" + theaterLng + "&radius=1&units=km&imageSize=Sm&imageText=true&api_key=57zf6v4b6hhx55rnnxznua7t";
   $.ajax({
     url: queryURL,
     method: "GET"
   }).done(function(response) {
-      console.log(response);
+      console.log("response: " + response);
       var movies = [];
       for (i = 0; i < response.length; i++) {
+              console.log("response: " + response[i]);
         if (response[i].ratings) {
           movies.push({
             title: response[i].title,
@@ -46,6 +57,7 @@ function movieDisplay (theaterLat, theaterLng){
         newDiv.append($("<p><bold>Showing at:</bold> " + movie.showtimes + "</p>"));
         console.log("newDiv: " + newDiv);
         $("#movieListings").append(newDiv);
+
       });
   });
 }
@@ -64,6 +76,7 @@ function createMarker(place) {
 
   google.maps.event.addListener(marker, 'click', function() {
     $("#movieListings").empty();
+
     lat=JSON.stringify(marker.getPosition().lat());
     lng=JSON.stringify(marker.getPosition().lng());
 
@@ -72,8 +85,10 @@ function createMarker(place) {
               //magic happens here!!!
     infowindow.setContent(place.name);
     infowindow.open(map, this);
-
     movieDisplay(lat, lng);
+    $("#theaterSubmit").show();
+
+
 
   });
 }
@@ -81,24 +96,48 @@ function createMarker(place) {
 // Place markers on map
 function placeMarkers(results, status) {            
   if (status === google.maps.places.PlacesServiceStatus.OK) {
+    var foods=[];
     for (var i = 0; i < results.length; i++) {
       createMarker(results[i]);
       console.log(results[i]);
+      if (results[i].price_level) {
+        foods.push({
+            title: results[i].name,
+            rating: results[i].rating,
+            address: results[i].vicinity
+          });
+        } 
+      }
+      foods.forEach(function(food){
+        console.log(food.title);
+        console.log("Rated " + food.rating);
+        console.log("Showing at: " + food.hours);
+        var newDivfood = $("<div class='foodDiv'>");
+        newDivfood.append($("<p><bold>Title:</bold> " + food.title + "</p>"));
+        newDivfood.append($("<p><bold>Rated:</bold> " + food.rating + "</p>"));
+        newDivfood.append($("<p><bold>Address:</bold> " + food.address + "</p>"));
+        console.log("newDiv: " + newDivfood);
+        $("#foodListings").append(newDivfood);
+
+      });
+
+
     }
   }
-}
 
 // Display map with search results
 function initMap(lat, lng, keyword) { // use lat and lng 
-  var latLngObj = {lat: lat, lng: lng};
-  console.log("lat1: " + lat);
-  console.log("lng2: " + lng);
+    // make sure we're dealing with floats
+    let flat = parseFloat(lat);
+    let flng = parseFloat(lng);
+    var latLngObj = { lat: flat, lng: flng };
+  console.log("lat1: " + flat);
+  console.log("lng2: " + flng);
   console.log("keyword initmap function:" + keyword);  
   map = new google.maps.Map(document.getElementById('map'), {
     center: latLngObj,
     zoom: 10
   });
-
   infowindow = new google.maps.InfoWindow();
   var service = new google.maps.places.PlacesService(map);
   service.nearbySearch({
@@ -152,19 +191,27 @@ $("#food-sumbit").on("click", function(event) {
   event.preventDefault();
   $("#food-form").modal("hide");
   foodInput();
+  $("#movieListings").hide();
+    $("#foodListings").show();
+  // $("#foodListings").hide();
 });
 
 // Get values of checked food choices and put markers on the map   
 function foodInput() {
-  var checkedValue = null; 
+
+  //default is mini golf if your date is indecisive
+  var checkedValue = "mini golf"; 
   var inputElements = document.getElementsByClassName('messageCheckbox');
   for(var i=0; inputElements[i]; ++i){
-    if(inputElements[i].checked){
-      checkedValue = inputElements[i].value;
+      if (inputElements[i].checked) {
+          if (checkedValue === "mini golf") {
+              checkedValue = "";
+          }
+      checkedValue += inputElements[i].value + " ";
       console.log(checkedValue );
-      initMap(lat, lng, checkedValue);
     }
   }
+     initMap(newLat, newLng, checkedValue);
 }
 
 // Get Radius
