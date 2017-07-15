@@ -1,4 +1,5 @@
 $("#welcome-modal").modal("show");
+$("#theaterSubmit").hide();
 $("#lets-go").on("click", function(event) {
 
   $("#welcome-modal").modal("hide");
@@ -9,7 +10,7 @@ var map;
 var infowindow;
 var lat = 0;
 var lng = 0;
-var keyword = "park";
+var keyword = "movie_theater";
 var radiusValue = 50000;
 
 //ajax for movie data for specific chosen location 
@@ -76,6 +77,16 @@ function createMarker(place) {
     movieDisplay(lat, lng);
 
   });
+
+  google.maps.event.addListener(marker, 'mouseover', function() {
+    infowindow.setContent(place.name);
+    infowindow.open(map, this);
+  });
+
+  // assuming you also want to hide the infowindow when user mouses-out
+  google.maps.event.addListener(marker, 'mouseout', function() {
+      infowindow.close();
+  });
 }
 
 // Place markers on map
@@ -140,6 +151,7 @@ function getlocation(address, keyword){
 $("#sumbitbtn").on("click", function(event) {
   event.preventDefault();
   $("#initial-form").modal("hide");
+  $("#theaterSubmit").show();
   var zipCode = $("#zipCodeInput").val().trim();
   console.log("zipcode:" + zipCode);    
   keyword = "movie_theater";
@@ -154,15 +166,41 @@ $("#food-sumbit").on("click", function(event) {
   foodInput();
 });
 
+// Display Restaurants
+function displayRestaurants(results, status) {
+  console.log(results);
+  if (status === google.maps.places.PlacesServiceStatus.OK) {
+    for (var i = 0; i < results.length; i++) {
+      var name = results[i].name;
+      var rating = results[i].rating;
+      var address = results[i].vicinity;
+      var newDiv = $("<div class='foodDiv'>");
+      newDiv.append($("<p>" + name + "</p>"));
+      newDiv.append($("<p><bold>Rating:</bold> " + rating + "</p>"));
+      newDiv.append($("<p><bold>Address at:</bold> " + address + "</p>"));
+      console.log("newDiv: " + newDiv);
+      $("#foodListings").append(newDiv);
+      console.log(results[i]);
+    }
+  }
+}
+
 // Get values of checked food choices and put markers on the map   
 function foodInput() {
   var checkedValue = null; 
   var inputElements = document.getElementsByClassName('messageCheckbox');
+  var latLngObj = {lat: lat, lng: lng};
   for(var i=0; inputElements[i]; ++i){
     if(inputElements[i].checked){
       checkedValue = inputElements[i].value;
       console.log(checkedValue );
       initMap(lat, lng, checkedValue);
+      var service = new google.maps.places.PlacesService(map);
+      service.nearbySearch({
+        location: latLngObj ,
+        radius: radiusValue,
+        keyword: checkedValue
+      }, displayRestaurants);
     }
   }
 }

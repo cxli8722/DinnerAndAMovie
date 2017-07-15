@@ -29,7 +29,7 @@
   </head>
   <body>
   <div class="container">
-    <div id="headingDiv"><h1 class="heading">Dinner and a Movie</h1> <h6 class="heading">Eat. Watch. Enjoy.</h6></div>
+    <div id="headingDiv"><h1 class="heading">Dinner and a Movie</h1> <h5 class="heading">     Eat. Watch. Enjoy.</h5></div>
   </div>    
 
    <!-- Welcome Modal -->
@@ -44,9 +44,9 @@
           </div>
           <div class="modal-body">
             <p>1. Choose a movie to see at a nearby theater.</p>
-            <p>2. Choose a nearby restaurant.</p>
+            <p>2. Choose a nearby restaurant for dinner.</p>
             <p>3. Enjoy!</p>
-          </div>
+          </div>  
           <div class="modal-footer">
             <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#initial-form">Let's go!</button>          </div>-->
             <button id="lets-go" type="button" class="btn btn-primary">Let's go!</button>          </div>
@@ -102,8 +102,12 @@
     <div id="mapRow" class="row" style="height:100%; width: 100%;">
       <div id="moviesDiv" class="col-md-3" style="height:100%; width: 25%;">
         <div id="movies" class="side-nav fixed">
-          <button type="button" id="theaterSubmit" class="btn btn-primary" data-dismiss="modal">Submit</button>
+          <div id="theaterSubmit">
+            <p id="submitHeader"><h4>Choose an option below and submit.</h4></p>
+            <button type="button" id="theaterSubmitBtn" class="btn btn-primary" data-dismiss="modal">Submit</button>
+          </div>
           <div id="movieListings"></div>
+          <div id="foodListings"></div>
         </div>
       </div>
       <div id="mapColumn" class="col-md-9" style="height:100%; width: 75%;">
@@ -168,7 +172,7 @@
         </div>
       </div>
     </div>  
-  <script src="assets/javascript/appedit.js"></script>
+  <script src="assets/javascript/app.js"></script>
    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATTkl-HYGA1UhggRn2Fyf1MPlqyQiHv1E&libraries=places&callback=loadMap" async defer></script>
 
   </body>
