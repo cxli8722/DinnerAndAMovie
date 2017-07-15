@@ -110,11 +110,11 @@ function placeMarkers(results, status) {
       }
       foods.forEach(function(food){
         console.log(food.title);
-        console.log("Rated " + food.rating);
+        console.log("Rating: " + food.rating);
         console.log("Showing at: " + food.hours);
         var newDivfood = $("<div class='foodDiv'>");
         newDivfood.append($("<p><bold>Title:</bold> " + food.title + "</p>"));
-        newDivfood.append($("<p><bold>Rated:</bold> " + food.rating + "</p>"));
+        newDivfood.append($("<p><bold>Rating:</bold> " + food.rating + "</p>"));
         newDivfood.append($("<p><bold>Address:</bold> " + food.address + "</p>"));
         console.log("newDiv: " + newDivfood);
         $("#foodListings").append(newDivfood);
