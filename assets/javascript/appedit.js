@@ -1,3 +1,8 @@
+// I realize this was probably just used for debugging, but two versions of a file == no bueno
+// Git commit the file and then make changes or delete the file,
+// you won't lose any work if its in a git commit. Having two versions of anything
+// is a sure recipe for bugs and banging-your-head-against-desk
+
 $("#welcome-modal").modal("show");
 $("#lets-go").on("click", function(event) {
 
