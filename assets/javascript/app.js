@@ -90,6 +90,7 @@ function createMarker(place) {
 }
 
 // Place markers on map
+// nice function!
 function placeMarkers(results, status) {            
   if (status === google.maps.places.PlacesServiceStatus.OK) {
     for (var i = 0; i < results.length; i++) {
@@ -101,6 +102,10 @@ function placeMarkers(results, status) {
 
 // Display map with search results
 function initMap(lat, lng, keyword) { // use lat and lng 
+  // lat and lang are strings here, lets convert them to floats before we send
+  // them to google maps
+  lat = parseFloat(lat);
+  lng = parseFloat(lng);
   var latLngObj = {lat: lat, lng: lng};
   console.log("lat1: " + lat);
   console.log("lng2: " + lng);
